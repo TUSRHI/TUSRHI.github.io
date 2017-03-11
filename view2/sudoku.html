@@ -1,0 +1,40 @@
+
+<div class="thewrap"ng-init="sdk.init()">
+
+<ul class="tab">
+  <li ng-click="sdk.init()"> <span>[New Game]</span></li>
+  <li ng-click="sdk.clearBoard()"><span>[Clear Board]</span></li>  
+  <li><span>[Show Mistake]</span></li>
+  <li><span>[Save/Load]</span></li>
+  
+</ul>
+<div class="theboard">
+
+<div ng-repeat="gridrow in [0,1,2]" class="thegridrow">
+<div ng-repeat="gridcol in [0,1,2]" class="thegridcol">
+    <div ng-repeat="row in [0,1,2]" class="therow">
+    <div ng-repeat="col in [0,1,2]" class="thecol {{sdk.checkmatter(gridrow*3+row,gridcol*3+col)}}">
+
+           <input class="square {{sdk.checkhi(gridrow*3+row,gridcol*3+col)}}" ng-model="sdk.board[(gridrow*3+row)*9+gridcol*3+col]" 
+               type="text" ng-change="sdk.handlechange(gridrow*3+row,gridcol*3+col)" 
+               ng-show="sdk.checkSeed(gridrow*3+row,gridcol*3+col)"
+               ng-focus="sdk.pick(gridrow*3+row,gridcol*3+col)">
+            <div class="seedsquare {{sdk.checkhi(gridrow*3+row,gridcol*3+col)}}" ng-hide="sdk.checkSeed(gridrow*3+row,gridcol*3+col)"
+            ng-click="sdk.pick(gridrow*3+row,gridcol*3+col)"            
+            >
+            {{sdk.board[(gridrow*3+row)*9+gridcol*3+col]}}
+            </div>
+    </div>
+    </div>
+</div>
+</div>
+<div class="success" ng-show="sdk.finish()">
+    You've Won!:)
+<div>
+</div>
+
+</div>
+
+
+
+

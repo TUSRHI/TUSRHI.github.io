@@ -1,0 +1,58 @@
+<div class="outer" ng-controller="battleludo as bat">
+
+<div class="ludowrap">
+<div ng-hide="winner===true" class="winnerclaim">
+    Winner is {{winner}}:)
+</div>
+<div ng-repeat="row in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]" class="ludorow">
+    <div ng-repeat="col in [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]" class="ludocol">
+        <div class="grid {{board[row*17+col]}} {{border[row*17+col]}}">
+        <div class="back {{board[row*17+col]}}">
+        <div class="spotfix {{spot[row*17+col]}} {{positions[row*17+col]}}" ng-click="trav(row*17+col)">
+        </div>
+        <div class="spot {{spot[row*17+col]}} fly "ng-class="getflycolor(row*17+col)" ng-style="getStyle(row*17+col)" ng-show="isflying(row*17+col)">
+        </div>
+        <div class="arrowlayer {{hasarrow(row,col)}}"ng-show="hasarrow(row,col)!=='none'">            
+        </div>
+        </div>
+        </div></div></div>
+</div>
+<div class="menuwrap">
+   <div ng-init="shownewgame=true" >
+       <span ng-click="shownewgame=!shownewgame">new game {{shownewgame?"▲":"▼"}}</span>
+        <div ng-show="shownewgame">
+        <div class="picker"style="background-color:#F9F9E7" ng-click="forceselect['y']=!forceselect['y']">
+            <span>{{forceselect['y']?"✓":"✗"}}</span>
+        </div>
+        <div class="picker"style="background-color: #D4DFED"ng-click="forceselect['b']=!forceselect['b']">
+            <span>{{forceselect['b']?"✓":"✗"}}</span>
+        </div>
+         <div class="picker"style="background-color:#C5E7D8"ng-click="forceselect['g']=!forceselect['g']">
+            <span>{{forceselect['g']?"✓":"✗"}}</span>
+        </div>        
+        <div class="picker"style="background-color:#FFE2D6"ng-click="forceselect['r']=!forceselect['r']">
+            <span>{{forceselect['r']?"✓":"✗"}}</span>
+        </div>
+        <div ng-click="shownewgame=init()" class="gogogo"style="margin-top:-15px">
+            <span class="gogogo" >confirm</span>
+        </div>
+   </div>
+
+  </div>
+   <div>
+       <span>roll dice</span>
+        <div ng-hide="shownewgame" class="{{turns[curturn]}}">
+        <div>
+           {{curturn==0?"Yellow":(curturn==1?"Blue":(curturn==2?"Green":"Red"))}}'s Turn!
+        </div>
+        <div>
+           DICE:{{dice}}
+        </div>
+        <div ng-click="rollDice()" class="gogogo"style="margin-top:-15px">
+            <span class="gogogo">{{(rolled||freeze)?"wait...":"ROOOLL!"}}</span>
+        </div>
+        </div>
+   </div>   
+</div>
+
+</div>

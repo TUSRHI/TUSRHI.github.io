@@ -1,0 +1,17 @@
+
+<div ng-init="bd.newBoard(9)">
+    <div>
+        In Stock: Building No.{{bd.newval}}
+    </div>
+    <div ng-repeat="i in bd.indicetraverser" >
+        <div ng-repeat="j in bd.indicetraverser" ng-click="bd.click(i,j)" ng-class="bd.getBackClass(i,j)">
+        	<div ng-class="bd.getBorderClass(i,j)">
+        		<div ng-class="bd.getFieldClass(i,j)">
+                    <div ng-class="bd.getBuilding(i,j)">
+                        <div class="num">{{bd.board[i][j]}}</div>
+                    </div>                
+                </div>
+        	</div>
+        </div>
+    </div>    
+</div>
